@@ -1,53 +1,36 @@
-import React, { useState } from "react";
-import "./App.css";
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Home from './pages/Home';
+import BookDelivery from './pages/BookDelivery';
+import Orders from './pages/Orders';
+import Profile from './pages/Profile';
+import Login from './pages/Login';
+import { Toaster } from 'react-hot-toast';
+import './App.css';
 
 function App() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleLogin = (e) => {
-    e.preventDefault();
-
-    if (!email || !password) {
-      alert("Please fill all fields");
-      return;
-    }
-
-    console.log("Email:", email);
-    console.log("Password:", password);
-
-    alert("Login Successful (Frontend only)");
-  };
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
-    <div className="login-container">
-      <div className="login-box">
-        <h2>Local Express</h2>
-        <p>Login to continue</p>
-
-        <form onSubmit={handleLogin}>
-          <input
-            type="email"
-            placeholder="Enter Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-
-          <input
-            type="password"
-            placeholder="Enter Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-
-          <button type="submit">Login</button>
-        </form>
-
-        <p className="signup-text">
-          Don’t have an account? <span>Register</span>
-        </p>
+    <Router>
+      <div className="App">
+        <Toaster position="top-right" reverseOrder={false} />
+        {isLoggedIn && <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />}
+        <main>
+          <Routes>
+            <Route path="/login" element={!isLoggedIn ? <Login setIsLoggedIn={setIsLoggedIn} /> : <Navigate to="/" />} />
+            
+            <Route path="/" element={isLoggedIn ? <Home /> : <Navigate to="/login" />} />
+            <Route path="/book-delivery" element={isLoggedIn ? <BookDelivery /> : <Navigate to="/login" />} />
+            <Route path="/orders" element={isLoggedIn ? <Orders /> : <Navigate to="/login" />} />
+            <Route path="/profile" element={isLoggedIn ? <Profile /> : <Navigate to="/login" />} />
+            
+            <Route path="*" element={<Navigate to={isLoggedIn ? "/" : "/login"} />} />
+          </Routes>
+        </main>
       </div>
-    </div>
+    </Router>
   );
 }
 

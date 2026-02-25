@@ -1,87 +1,79 @@
-🚚 Local Express – Local Delivery Service
+# 🚚 Local Express – Local Delivery Service
+
 Local Express is a local pickup & drop delivery service designed for small items like documents, laptops, keys, and parcels.
 This project focuses on providing fast, affordable, and reliable delivery within a local area.
-✨ Features
-📦 Small item pickup & drop
-📍 Local area based delivery
-👤 User & Delivery Partner roles
-📄 Order creation & tracking
-🔐 Secure backend APIs
-⚡ Fast performance with modern tech stack# Local-Express
 
-📂 Project Structure
-local-express/
-│
-├── backend/                 # FastAPI Backend
-│   ├── app/
-│   │   ├── main.py          # FastAPI entry point
-│   │   ├── config.py        # App configuration
-│   │   ├── database.py      # DB connection
-│   │   ├── models/          # Database models
-│   │   ├── schemas/         # Pydantic schemas
-│   │   ├── routers/         # API routes
-│   │   └── utils/           # Helper functions
-│   │
-│   ├── requirements.txt     # Backend dependencies
-│   └── .env                 # Environment variables
-│
-├── frontend/                # React Frontend
-│   ├── public/
-│   └── src/
-│       ├── components/      # Reusable components
-│       ├── pages/           # Pages / Screens
-│       ├── services/        # API calls
-│       ├── App.js
-│       └── index.js
-│
-└── README.md
+## ✨ Features
+- 📦 Small item pickup & drop
+- 📍 Local area based delivery
+- 👤 User & Delivery Partner roles
+- 📄 Real-time Order creation (Unique ID generation)
+- 🔐 Secure backend APIs with FastAPI
+- ⚡ Modern UI with React
 
+## 📂 Project Structure
+```text
+Local-Express/
+├── Backend/                 # FastAPI Backend
+│   ├── database.py          # Shared mock database
+│   ├── main.py              # FastAPI entry point
+│   ├── routes/              # API endpoints (Auth, Delivery, Orders, etc.)
+│   ├── schemas/             # Pydantic data models
+│   ├── venv/                # Python Virtual Environment
+│   └── requirements.txt     # Backend dependencies
+├── Frontend/                
+│   └── frontend/            # React App
+│       ├── src/
+│       │   ├── components/  # Reusable UI components
+│       │   ├── pages/       # Application screens
+│       │   └── App.js       # Main routing logic
+│       └── package.json     # Frontend dependencies
+```
 
+## 🛠 Tech Stack
+### Frontend
+- **React.js**
+- **Axios** (API integration)
+- **React Hot Toast** (Notifications)
+- **Vanilla CSS** (Custom Styling)
 
-🛠 Tech Stack (Clear-aa)
-Frontend
+### Backend
+- **FastAPI**
+- **Python**
+- **Pydantic** (Data validation)
+- **Uvicorn** (ASGI Server)
 
-React.js
-JavaScript
-HTML, CSS
-Axios (API calls)
+## 🚀 Getting Started
 
-Backend
+### 1️⃣ Clone the repository
+```bash
+git clone https://github.com/BackendDeveloperHub/Local-Express.git
+cd Local-Express
+```
 
-FastAPI
-Python
-JWT Authentication
-RESTful APIs
+### 2️⃣ Backend Setup
+```bash
+cd Backend
+# Activate virtual environment
+source venv/bin/activate  # Mac/Linux
+# .\venv\Scripts\activate  # Windows
 
-
-🚀 Getting Started
-1️⃣ Clone the repository
-git clone https://github.com/your-username/local-express.git
-cd local-express
-
-
-2️⃣ Backend Setup:-
-cd backend
+# Install dependencies
 pip install -r requirements.txt
-uvicorn main:app --reload
 
-Backend will run on:
+# Start the server
+uvicorn main:app --reload --port 8000
+```
+- **API URL:** [http://127.0.0.1:8000](http://127.0.0.1:8000)
+- **Interactive Docs:** [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
 
-
-http://127.0.0.1:8000
-
-
-API Docs:
-
-http://127.0.0.1:8000/docs
-
-
-
-3️⃣ Frontend Setup
-
-cd frontend
+### 3️⃣ Frontend Setup
+```bash
+cd Frontend/frontend
 npm install
-npm run dav
+npm start
+```
+- **App URL:** [http://localhost:3000](http://localhost:3000)
 
-
-
+## 💡 Developer Notes
+- **Mock Data**: The backend uses `Backend/database.py` for state management in memory. Restarting the server will reset the order list.
