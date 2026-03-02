@@ -1,7 +1,9 @@
 import { useState } from "react";
 import "./App.css";
+import Signup from "./Signup";
 
 function App() {
+  const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -10,6 +12,10 @@ function App() {
     console.log("Email:", email);
     console.log("Password:", password);
   };
+
+  if (!isLogin) {
+    return <Signup onSwitchToLogin={() => setIsLogin(true)} />;
+  }
 
   return (
     <div className="login-container">
@@ -37,7 +43,7 @@ function App() {
         </form>
 
         <p className="hint">
-          Don’t have an account? <span>Sign up</span>
+          Don’t have an account? <span onClick={() => setIsLogin(false)} style={{ cursor: "pointer", color: "#007bff" }}>Sign up</span>
         </p>
       </div>
     </div>
