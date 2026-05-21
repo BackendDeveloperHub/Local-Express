@@ -14,3 +14,6 @@ class LoginResponse(BaseModel):
 class LogoutResponse(BaseModel):
     message: str
     is_logged_in: bool
+
+class TokenData(BaseModel):
+    username: Optional[str] = None

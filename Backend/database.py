@@ -1,3 +1,4 @@
+from core.security import get_password_hash
 
 db_orders = [
     {
@@ -24,4 +25,12 @@ profile_db = {
     "email": "john.doe@example.com",
     "phone": "+1 234 567 890",
     "address": "123 Express St, Delivery City"
+}
+
+users_db = {
+    "johndoe": {
+        "username": "johndoe",
+        # pre-hashed value of "admin123" — generated separately
+        "hashed_password": "$2b$12$AN4qg0wf/CFGUkACgqbJ2uRg7p8N7mJbiqfpc0fnYjqCqBopPgdIa"
+    }
 }

@@ -1,17 +1,26 @@
-from fastapi import APIRouter
-from schemas.orders import Order, OrderList, OrderItem
+from fastapi import APIRouter, Depends
+from pydantic import BaseModel
 from typing import List
+from core.dependencies import get_current_user
 from database import db_orders
 
 router = APIRouter(prefix="/orders", tags=["orders"])
 
-@router.get("/", response_model=OrderList)
-async def get_orders():
-    return {"orders": db_orders}
+class OrderItem(BaseModel):
+    id: int
+    name: str
+    quantity: int
+    price: float
 
-@router.get("/{order_id}", response_model=Order)
-async def get_order(order_id: int):
-    for order in db_orders:
-        if order["id"] == order_id:
-            return order
-    return None
+class Order(BaseModel):
+    id: int
+    items: List[OrderItem]
+    total_price: float
+    status: str
+
+class OrderList(BaseModel):
+    orders: List[Order]
+
+@router.get("/", response_model=OrderList)
+async def get_orders(current_user: dict = Depends(get_current_user)):
+    return {"orders": db_orders}
