@@ -21,7 +21,7 @@ async def book_delivery(request: DeliveryRequest):
             }
         ],
         "total_price": 15.0,
-        "status": "Booked"
+        "status": "Pending"
     }
     
     # Update the order list
@@ -29,7 +29,7 @@ async def book_delivery(request: DeliveryRequest):
     
     return {
         "id": new_id,
-        "status": "Booked",
+        "status": "Pending",
         "pickup_address": request.pickup_address,
         "delivery_address": request.delivery_address,
         "message": "Delivery booked successfully!"

@@ -8,7 +8,10 @@ const Orders = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get('http://127.0.0.1:8000/orders/')
+    const token = localStorage.getItem('token');
+    axios.get('http://127.0.0.1:8000/orders/', {
+      headers: { Authorization: `Bearer ${token}` },
+    })
       .then(response => {
         setOrders(response.data.orders);
         setLoading(false);
@@ -20,7 +23,13 @@ const Orders = () => {
       });
   }, []);
 
-  if (loading) return <div className="page-container">Loading your orders...</div>;
+  if (loading) {
+    return (
+      <div className="page-container center">
+        <div className="loading-spinner" aria-label="Loading your orders" />
+      </div>
+    );
+  }
 
   return (
     <div className="page-container">
