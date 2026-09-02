@@ -16,7 +16,15 @@ db_orders = [
             {"id": 3, "name": "Pizza", "quantity": 1, "price": 15.5}
         ],
         "total_price": 15.5,
-        "status": "In Transit"
+        "status": "Picked"
+    },
+    {
+        "id": 1236,
+        "items": [
+            {"id": 4, "name": "Salad", "quantity": 2, "price": 8.0}
+        ],
+        "total_price": 16.0,
+        "status": "Pending"
     }
 ]
 
